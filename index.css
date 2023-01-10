@@ -87,7 +87,7 @@
   }
 
 
-.picture {
+/* .picture {
     width: 300px;
     border: 1px solid black;
     border-radius: 10px;
@@ -106,7 +106,7 @@
     width: 80%;
     margin: auto;
     gap: 12px;
-  }
+  } */
   
   body {
     background-color: #000000;
@@ -114,6 +114,8 @@
     font-weight: 500;
     font-style: normal;
     color: #fffbc6;
+    margin: 0;
+    padding: 0;
   }
   
   .page-container {
