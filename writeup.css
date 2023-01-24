@@ -1,0 +1,77 @@
+.writeup-container {
+    width: 60vw;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+}
+
+body {
+    background-color: black;
+    color: whitesmoke;
+}
+
+img {
+    width: 100%;
+}
+
+h1, h2, h3 {
+    font-family: roc-grotesk-wide, sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+h1 {
+    font-size: 5rem;
+}
+
+h2 {
+    margin-top: 14vh;
+    margin-bottom: 6vh;
+    font-size: 4rem;
+}
+
+h3 {
+    margin-top: 9vh;
+    margin-bottom: 4vh;
+    font-size: 3rem;
+    color: rgb(216, 216, 216);
+    font-weight: 300;
+}
+
+a {
+    color:whitesmoke;
+}
+
+a:visited {
+    color:whitesmoke;
+}
+
+p, li {
+    font-family: "ivyepic", sans-serif;
+    font-weight: 250;
+    font-style: normal;
+    margin-top: 3vh;
+    letter-spacing: .03rem;
+    font-size: 1rem;
+    line-height: 1.75rem;
+}
+
+.bulleted-list {
+    padding-left: 50px;
+}
+
+.bullet-point {
+    margin-bottom: 1.5vh;
+    margin-top: 0;
+}
+
+.project-img {
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
+
+ul {
+    list-style-type: circle;
+}
+

@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="../writeup.css" />
+    <link rel="stylesheet" href="https://use.typekit.net/nsi7ers.css">
+    <link rel="stylesheet" href="https://use.typekit.net/jla2cmv.css">
+
+  </head>
+  <body>
+    <div class="writeup-container">
+        <h1>MP1: Chrome Extension</h1>
+        <img class="banner-gif" src="../imgs/MP1 Demonstration.gif" alt="">
+        <p>"Spawn" is an extension that allows a user to spawn a random animal image whenever they click on the screen.</p>
+        <h3>Running Spawn</h3>
+        <div class="bulleted-list">
+          <p class="bullet-point">1. Clone my <a href="https://github.com/angelaaaaliu/clickbutton.git">Git repository</a>.</p>
+          <p class="bullet-point">2. Load the extension into Chrome by following <a href="https://developer.chrome.com/docs/extensions/mv3/getstarted/development-basics/#load-unpacked">these instructions</a>.</p>
+          <p class="bullet-point">3. Ensure that "spawn animals" is toggled on by clicking on the extension icon in the top right of the Chrome browser and toggling it on.</p>
+          <p class="bullet-point">4. Click anywhere on the page and watch it turn into a chaotic animal farm :D</p>
+        </div>
+        <h2>Development Process</h2>
+        <p>
+          I started by brainstorming what extension I wanted to do. I initially wanted to create an extension that would spawn a frog every time you click any button on a page. 
+          This would soon proof difficult as I realized that clicking buttons on a page usually led to a different page. Thus, once a frog spawned, chances are the user wouldn't 
+          even see it.
+        </p>
+        <p>
+          This issue prompted me to change the workflow of my extension. Instead, I would have the user click anywhere on the current page and an animal will spawn. Now, 
+          I was ready to write my code.
+        </p>
+        <p>I filled out the manifest.json file and created a basic HTML/CSS file to format and style the popup.</p>
+        <p>
+          I used my professor's, Hannah's, code as a starting point for writing the function that would send a message to the content script (the script that impacts what occurs in the 
+          current tab).
+        </p>
+        <p>
+          In my content script file (named 'page.js'), I created functions that would add an event listener to the entire body that spawned a random animal image (out of the four animal images
+          I created) every time you clicked on it.
+        </p>
+        <h3>Issue Deep-Dive</h3>
+        <p>
+          A primary issue that I encountered was that although my images were being created and added to the DOM of the page, the images were still not showing up. Here's how my project looked
+          before I fixed this issue.
+        </p>
+        <img class="project-img" src="../imgs/MP1 images not showing up.png">
+        <p>As you can see, even though image elements were being created, no actual images were being displayed.</p>
+        <p>
+          I suspected that the issue stemmed from the source of the images. I double checked the image sources by logging them in the console but they seemed to be the right file path. 
+          At this point, I had my images saved locally in a subfolder of my project folder.
+        </p>
+        <p>
+          After a bit of trial-and-error, I suspected that using a local file path as the source of my image is non-sensical, as not everyone using the extension will have the images 
+          downloaded onto their computer. I changed the image sources to a URL of the image I obtained by opening up the image in my Github. This means that the image source was now a
+           URL that can be publicly found online. Once I did this, the images start populating correctly!
+        </p>
+        <h2>Ideas and Future Work</h2>
+        <ul class="bulleted-list">
+          <li class="bullet-point">Storing the toggle value so that reloaded pages have the same toggle value as did before it was reloaded.</li>
+          <li class="bullet-point">Storing animal images that reloaded pages have the same animal images as it did before it was reloaded.</li>
+          <li class="bullet-point">Adding more animals!</li>
+          <li class="bullet-point">Ability to despawn animals.</li>
+        </ul>
+        <h2>Kudos</h2>
+        <p>
+          Thank you to my lovely boyfriend for helping me debug and being there for me as I stressed out over my extension not working. Thank you to my friend Christina for providing me
+           me with a <a href="https://moshfeu.medium.com/notifications-in-chrome-extension-50aac17b3b7d">helpful resource</a>. Thank you to Hannah for providing amazing examples (with 
+           thoughtful comments!) that acted as solid starting points for the project.
+        </p>
+    </div>
+  </body>
+</html>
