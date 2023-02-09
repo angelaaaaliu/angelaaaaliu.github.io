@@ -1,0 +1,171 @@
+<html>
+    <head>
+        <title>Bezier Curves Randomized</title>
+        <style>
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+        </style>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js" integrity="sha512-3WFaXQUsbGieECwv3t3DvyAkZ7pp+/rIKOQnx7NKhfwIF0u2l+DYsE2eF635ewJVj3YTU4/Ug6UqEkSTZCiSew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.js" integrity="sha512-TU9AWtV5uUZPX8dbBAH8NQF1tSdigPRRT82vllAQ1Ke28puiqLA6ZVKxtUGlgrH6yWFnkKy+sE6luNEGH9ar0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script>
+            let addTone;
+let toneFreqs = [];
+let midiNotes = [60, 62, 64, 65, 67, 69, 71, 72];
+// let oscs = [];
+let currNote = 0;
+let soundLoops = [];
+let synth;
+let soundloop;
+let currSoundLoop = 0;
+let notes = [];
+let circles = [];
+let button;
+var pressed = false;
+let fillR = 255;
+let fillG = 255;
+let fillB = 255;
+let fillRColors = [237, 255, 255, 191, 52, 173, 208, 255];
+let fillGColors = [97, 156, 226, 250, 237, 201, 194, 194];
+let fillBColors = [90, 43, 38, 42, 212, 255, 255, 240];
+let currCircle = 0;
+
+
+function setup() {
+  createCanvas(windowWidth, windowHeight); 
+  toneFreq = createInput('Enter tone frequency')
+  toneFreq.position(windowWidth / 2 - 200, windowHeight / 2);
+  toneFreq.size(200);
+  //
+  button = createButton('Add tone')
+  .mousePressed(()  => pressed = true)
+  .mouseReleased(() => pressed = false);
+  button.position(windowWidth / 2 + 15, windowHeight / 2);
+  button.mousePressed(buttonPressed);
+  synth = new p5.MonoSynth();
+  
+ //parseInt(toneFreq.value())
+  
+  for (let i = 0; i < midiNotes.length; i++) {
+    let note = midiToFreq(midiNotes[i]);
+    notes.push(note);
+  }
+}
+
+function draw() {
+  background('black');
+  text('Enter a tone frequency and then click add tone to add the tone.', 20, 50);
+  text('The frequency you type in equals how many seconds before the tone will play again.', 20, 65);
+  text('Program will automatically cycle through tones of a C major scale.', 20, 80);
+  text('Refresh and add tones at different frequencies to create new songs! :)', 20, 95);
+
+  if (pressed) {
+    fillR = 237;
+    fillG = 97;
+    fillB = 90;
+  }
+  if (currNote == 0) {
+    circle(windowWidth - (windowWidth / 16), windowHeight - 200, windowWidth / 8);
+  } else {
+        let noteCircle = circle(((windowWidth / 8) * (currCircle - 1) + (windowWidth / 16)), windowHeight - 200, windowWidth / 8);
+  }
+
+
+}
+
+
+function buttonPressed() {
+  // ensure audio is enabled
+  addSoundLoop();
+  userStartAudio();
+  let endIndex = soundLoops.length - 1;
+  soundLoops[endIndex].start();
+  currNote = (currNote + 1) % midiNotes.length;
+  currCircle = (currCircle + 1) % midiNotes.length;
+
+}
+
+function createCTone() {
+  let note = notes[0];
+  synth.play(note, 0.2, 0);
+  fill(237, 97, 90);
+
+}
+
+function createDTone() {
+  let note = notes[1];
+  synth.play(note, 0.2, 0);
+  fill(255, 156, 43);
+
+}
+
+function createETone() {
+  let note = notes[2];
+  synth.play(note, 0.2, 0);
+  fill(255, 226, 38);
+}
+
+function createFTone() {
+  let note = notes[3];
+  synth.play(note, 0.2, 0);
+  fill(191, 250, 42);
+}
+
+function createGTone() {
+  let note = notes[4];
+  synth.play(note, 0.2, 0);
+  fill(52, 237, 212);
+}
+
+function createATone() {
+  let note = notes[5];
+  synth.play(note, 0.2, 0);
+  fill(173, 201, 255);
+}
+
+function createBTone() {
+  let note = notes[6];
+  synth.play(note, 0.2, 0);
+  fill(208, 194, 255);
+}
+
+function createHighCTone() {
+  let note = notes[7];
+  synth.play(note, 0.2, 0);
+  fill(255,  194, 240);
+}
+
+
+
+
+function addSoundLoop(){
+  let toneFrequency = parseFloat(toneFreq.value())
+  
+  if (currNote == 0) {
+    soundLoop = new p5.SoundLoop(createCTone, toneFrequency);
+  } else if (currNote == 1) {
+    soundLoop = new p5.SoundLoop(createDTone, toneFrequency);
+  } else if (currNote == 2) {
+    soundLoop = new p5.SoundLoop(createETone, toneFrequency);
+  } else if (currNote == 3) {
+    soundLoop = new p5.SoundLoop(createFTone, toneFrequency);
+  } else if (currNote == 4) {
+    soundLoop = new p5.SoundLoop(createGTone, toneFrequency);
+  } else if (currNote == 5) {
+    soundLoop = new p5.SoundLoop(createATone, toneFrequency);
+  } else if (currNote == 6) {
+    soundLoop = new p5.SoundLoop(createBTone, toneFrequency);
+  } else {
+    soundLoop = new p5.SoundLoop(createHighCTone, toneFrequency);
+  }
+
+  soundLoops.push(soundLoop);
+  console.log(soundLoops[0]);
+}
+
+        </script>
+    </head>
+</html>

@@ -130,11 +130,11 @@
     /* font-family: miller-headline, serif;
     font-weight: 300;
     font-style: italic; */
-    font-family: utopia-std-display, serif;
-    /* font-family: roc-grotesk-wide, sans-serif; */
-    font-weight: 200;
+    /* font-family: utopia-std-display, serif; */
+    font-family: roc-grotesk-wide, sans-serif;
+    font-weight: 70;
     /* font-style: italic; */
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     letter-spacing: 0rem;
     /* border-top: #fffbc6 1px;
     border-bottom: #fffbc6 1px; */

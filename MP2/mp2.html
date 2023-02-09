@@ -1,0 +1,85 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="../writeup.css" />
+    <link rel="stylesheet" href="https://use.typekit.net/nsi7ers.css">
+    <link rel="stylesheet" href="https://use.typekit.net/jla2cmv.css">
+
+  </head>
+  <body>
+    <div class="writeup-container">
+        <h1>MP2: P5 Sketches</h1>
+        <img class="banner" src="../imgs/MP2.2 Random.png" alt="">
+        <p>For this project, I created 6 different sketches with different criteria - static, random, infinite loop, interactive, audio, and audio-visual. You can view the complete sketches
+            <a class="standout-link" href="../sketch-gallery/sketch-gallery.html">here</a> or by clicking on 'sketch gallery' on the home page.
+        </p>
+        <h2>Development Process</h2>
+        <p>Before I began coding, I browsed the p5 website to see what references and shapeforms I could use. I also browsed sites like 
+        <a class="standout-link" href="https://openprocessing.org/discover/#/trending">OpenProcessing</a> to get a sense of what designs I liked. I noticed that there was an object
+        called a bezier curve that really caught my eye. Below is the bezier curve that ended up being the foundation for my first two sketchs.</p>
+        <img src="/imgs/MP2 Single Bezier Curve.png">
+        <p>I knew that I liked the look of many thin lines put together so that is what inspired sketches 01 and 02.</p>
+        <div class="tile-grid">
+            <a class="tile" href="../sketch-gallery/bezier-curve-sketch.html">
+              <img class="tile-img" src="../sketch-gallery/imgs/MP2.1 Static  - Black.png">
+              <p>01 Static Bezier Curves</p>
+            </a>
+            <a class="tile" href="../sketch-gallery/bezier-curve-random-sketch.html">
+              <img class="tile-img" src="../sketch-gallery/imgs/MP2.2 Random GIF.gif">
+              <p>02 Random Bezier Curves</p>
+            </a>
+          </div>
+        <p>Actually, before I had even looked at any inspiration, I thought of making a galaxy-like sketch. My original idea was to create many stars that would glow and orbit
+            around each other. I did not end up doing that, but I noticed that there was something called 'WEBGL' and 'orbit control' that allowed me to create 3-D shapes. That is how I ended
+            up with the solar system in sketches 03 and 04.
+        </p>
+        <div class="tile-grid">
+            <a class="tile" href="../sketch-gallery/galaxy-infinite-loop-sketch.html">
+              <img class="tile-img" src="../sketch-gallery/imgs/MP2.3 Infinite Loop.gif">
+              <p>03 Infinite Solar System Loop</p>
+            </a>
+            <a class="tile" href="../sketch-gallery/galaxy-interactive-sketch.html">
+              <img class="tile-img" src="../sketch-gallery/imgs/MP2.4 Interactive.gif">
+              <p>04 Interactive Solar System</p>
+            </a>
+          </div>
+        <p>Originally, I wanted to continue using my solar system for sketch 06 so I decided to just figure out how I would attach my audio to the solar system and that would be my sketch
+            05. In my head, I wanted the user to be able to continue to add rings and planets around the center planet. Then, each planet would chime a tone every time it completed a full
+            orbit. Thus, for my sound for sketch 05, I needed to allow the user to input multiple tones and frequencies, have the program remember each tone and frequency, and play them all at
+            the same time. These were the sketches that I struggled with the most. I will elaborate more on the issues I faced in the 'Issues Deep-Dive' section of this write-up. Eventually,
+            I could barely complete the simple visual that you see in my current sketch 06 and was unable to attach it to the solar system visual.
+        </p>
+        <div class="tile-grid">
+            <a class="tile" href="../sketch-gallery/sound-loop-sketch.html">
+              <img class="tile-img" src="../sketch-gallery/imgs/MP2.5 Sound.png">
+              <p>05 Sound Loop</p>
+            </a>
+            <a class="tile" href="../sketch-gallery/visual-sound-loop-sketch.html">
+              <img class="tile-img" src="../sketch-gallery/imgs/MP2.6 Audio and Visual.gif">
+              <p>06 Visual Sound Loop</p>
+            </a>
+        </div>
+        <h2>Issue Deep Dive</h2>
+        <p>For sketch 05, I utilized an object called "sound loops" in p5. It intakes a function and a frequency. Once the sound loops starts, it will run the function every loop.
+            I was able to get the sound loop working - I could input a frequency and add a tone. I could then input another frequency and tones will start playing at each frequency.
+            However, my program was supposed to iterate through the scale and play the next tone every time the user adds a tone while at the same time playing all previous tones.
+            For example, if I add a tone and give it a frequency of 1 second, it should start by playing the C note every 1 second. Then if I add a second tone at a frequency of
+            2 seconds, it should start playing the D note every 2 seconds while also playing the C note every 1 second. The issue that I faced was that every time I added a tone,
+            all tones will end up playing the same note. In terms of the example I gave, that means that the program would play D every 1 second and D every 2 seconds.
+        </p>
+        <p>To handle which note the program is supposed to currently be playing, I had a variable named 'currNote' that tracked the current note of the scale. And once it reaches the
+            end of the scale, it should loop back to the beginning. I created a function that the each sound loop I created would take in. All this function did was play the current note
+             each time any sound loop iterated. What I realized was that the sound loop was calling the function every time it looped, which also meant that as I incremented 'currNote,' EVERY
+             SINGLE sound loop I had created would also play that current note. To fix this, I created separate functions for each note. Basically, I have 8 functions and all any of them do
+             is play a different note of the scale. Then, whenver I added a tone and created a sound loop, each sound loop would be fed a different function depending on the current note.
+        </p>
+        <h2>Ideas and Future Work</h2>
+        <p>I would still love to somehow match the audio with the rotation of the solar system rings. I think it would be amazing if it turned out right.</p>
+        <p>I also want to explore more designs I can do in WEBGL. Another initial idea I had was to create a 3-D bezier curve that rotates or translates in space in a weird way.</p>
+        <p>Lastly, my dad has an interesting hobby of astrophography and I think I could use p5 to create some cool assets for a potential website. Maybe I'll do this for my final project!</p>
+        <h2>Kudos</h2>
+        <p>As usual, thank you to my wonderful boyfriend for listening to me as I used him as a rubber ducky to figure out my code. Even though he knew little about p5, it was helpful
+            to just be able to talk it out with him.
+        </p>
+    </div>
+</body>
+</html>

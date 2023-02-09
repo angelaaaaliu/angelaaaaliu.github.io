@@ -1,0 +1,180 @@
+<html>
+    <head>
+        <title>Bezier Curves</title>
+        <style>
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+        </style>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js" integrity="sha512-3WFaXQUsbGieECwv3t3DvyAkZ7pp+/rIKOQnx7NKhfwIF0u2l+DYsE2eF635ewJVj3YTU4/Ug6UqEkSTZCiSew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.js" integrity="sha512-TU9AWtV5uUZPX8dbBAH8NQF1tSdigPRRT82vllAQ1Ke28puiqLA6ZVKxtUGlgrH6yWFnkKy+sE6luNEGH9ar0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script>
+            function setup() {
+                createCanvas(windowWidth, windowHeight);
+            }
+
+
+            function draw() {
+            background('black');
+            noFill();
+            let x1 = windowWidth / 2,
+            x2 = x1 - 40,
+            x3 = x1 + 20,
+            x4 = x1 - 30;
+            let y1 = windowHeight / 2 - 100,
+            y2 = y1 + 30,
+            y3 = y1 + 35,
+            y4 = y1 + 65;
+            
+            let xdiff = 10;
+            
+            for (let i = 0; i < 50; i++) {
+                
+            if (x2 < windowWidth / 2) {
+                    let ix2 = x2,
+                    ix3 = x3,
+                    ix4 = x4;
+                let iy2 = y2,
+                    iy3 = y3,
+                    iy4 = y4;
+                strokeWeight('2');
+                point(x1, y1);
+                stroke('green');
+                point(x2, y2);
+                stroke('blue');
+                point(x3, y3);
+
+
+                strokeWeight('0.5');
+                stroke('white');
+                beginShape();
+                vertex(x1, y1);
+                bezierVertex(ix2, iy2, ix3, iy3, ix4, iy4);
+
+                ix2 = ix2 - 30;
+                iy2 = iy2 + 60;
+                iy3 = iy3 + 60;
+                iy4 = iy4 + 70;
+                ix4 = ix4 + 10;
+                strokeWeight('2');
+                stroke('green');
+                point(ix2, iy2);
+                stroke('blue');
+                point(ix3, iy3);
+
+                strokeWeight('0.5');
+                stroke('white');
+
+                bezierVertex(ix2, iy2, ix3, iy3, ix4, iy4);
+
+                ix2 = ix2 + 30;
+                iy2 = iy2 + 70;
+                ix3 = ix3 - 40;
+                iy3 = iy3 + 70;
+                ix4 = windowWidth / 2;
+                iy4 = iy4 + 50
+
+                strokeWeight('2');
+                stroke('green');
+                point(ix2, iy2);
+                stroke('blue');
+                point(ix3, iy3);
+
+                strokeWeight('0.1');
+                stroke('white');
+                bezierVertex(ix2, iy2, ix3, iy3, ix4, iy4);
+                
+
+                endShape();
+                x2 = x2 - xdiff;
+                x3 = x3 - xdiff;
+                x4 = x4 - xdiff;
+                xdiff = xdiff - 1;
+            }
+
+            }
+            
+            x1 = windowWidth / 2;
+            x2 = x1 + 40;
+            x3 = x1 - 20;
+            x4 = x1 + 30;
+            y1 = windowHeight / 2 - 100,
+            y2 = y1 + 30,
+            y3 = y1 + 35,
+            y4 = y1 + 65;
+            
+            xdiff = 10;
+            let lineStrokeWeight = 1;
+            
+            for (let i = 0; i < 30; i++) {
+                if (x2 >= windowWidth / 2 ) {
+                    let ix2 = x2,
+                    ix3 = x3,
+                    ix4 = x4;
+                let iy2 = y2,
+                    iy3 = y3,
+                    iy4 = y4;
+                stroke(0, 0, 0);
+                strokeWeight('2');
+                point(x1, y1);
+                stroke('green');
+                point(x2, y2);
+                stroke('blue');
+                point(x3, y3);
+
+
+
+                strokeWeight('1');
+                stroke('white');
+                beginShape();
+                vertex(x1, y1);
+                bezierVertex(ix2, iy2, ix3, iy3, ix4, iy4);
+
+                ix2 = ix2 + 30;
+                iy2 = iy2 + 60;
+                iy3 = iy3 + 60;
+                iy4 = iy4 + 70;
+                ix4 = ix4 - 10;
+                strokeWeight('5');
+                stroke('green');
+                point(ix2, iy2);
+                stroke('blue');
+                point(ix3, iy3);
+
+                strokeWeight('1');
+                stroke('white');
+                bezierVertex(ix2, iy2, ix3, iy3, ix4, iy4);
+
+                ix2 = ix2 - 30;
+                iy2 = iy2 + 70;
+                ix3 = ix3 + 40;
+                iy3 = iy3 + 70;
+                ix4 = windowWidth / 2;
+                iy4 = iy4 + 50
+
+                strokeWeight('5');
+                stroke('green');
+                point(ix2, iy2);
+                stroke('blue');
+                point(ix3, iy3);
+
+                strokeWeight('0.5');
+
+                bezierVertex(ix2, iy2, ix3, iy3, ix4, iy4);
+                
+
+                endShape();
+                x2 = x2 + xdiff;
+                x3 = x3 + xdiff;
+                x4 = x4 + xdiff;
+                xdiff = xdiff - 1;
+            }
+            }
+            noLoop();
+            }
+        </script>
+    </head>
+</html>

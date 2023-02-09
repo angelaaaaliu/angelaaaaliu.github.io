@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>Infinite Galaxy Loop</title>
+        <style>
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+        </style>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js" integrity="sha512-3WFaXQUsbGieECwv3t3DvyAkZ7pp+/rIKOQnx7NKhfwIF0u2l+DYsE2eF635ewJVj3YTU4/Ug6UqEkSTZCiSew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.js" integrity="sha512-TU9AWtV5uUZPX8dbBAH8NQF1tSdigPRRT82vllAQ1Ke28puiqLA6ZVKxtUGlgrH6yWFnkKy+sE6luNEGH9ar0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script>
+            function setup() {
+                createCanvas(windowWidth, windowHeight, WEBGL);
+                
+                }
+
+                function draw() {
+                background('black');
+                normalMaterial();
+                sphere(60);
+                rotateY(millis() / 2000);
+                rotateX(90);
+                torus(150, 1)
+                createSphere(150, 0, 0, 20);
+                }
+
+                function createSphere(x, y, z, r) {
+                translate(x, y, z)
+                sphere(r)
+                }
+        </script>
+    </head>
+</html>

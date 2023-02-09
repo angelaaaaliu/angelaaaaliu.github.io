@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <title>Interactive Galaxy</title>
+        <style>
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+        </style>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js" integrity="sha512-3WFaXQUsbGieECwv3t3DvyAkZ7pp+/rIKOQnx7NKhfwIF0u2l+DYsE2eF635ewJVj3YTU4/Ug6UqEkSTZCiSew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.js" integrity="sha512-TU9AWtV5uUZPX8dbBAH8NQF1tSdigPRRT82vllAQ1Ke28puiqLA6ZVKxtUGlgrH6yWFnkKy+sE6luNEGH9ar0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script>
+            let slider;
+
+
+            function setup() {
+            createCanvas(windowWidth, windowHeight, WEBGL);
+            slider = createSlider(1, windowWidth, 400);
+            slider.position(10, 10);
+            slider.style('width', '300px');
+            }
+
+            function draw() {
+            orbitControl();
+            background('black');
+            normalMaterial();
+            rotateY(millis() / (slider.value() * 8));
+            sphere(60);
+            rotateX(90);
+            torus(150, 1)
+            createSphere(150, 0, 0, 15);
+            torus(230, 2);
+            createPlanetRing(slider.value() * 2, 230, 2, 5);
+            // createPlanetRing(slider.value() * 5, 180, 1, 12);
+            // createPlanetRing(slider.value() * 8, 70, 10, 25);
+            }
+
+            function createSphere(x, y, z, r) {
+            translate(x, y, z)
+            sphere(r)
+            }
+
+            function createPlanetRing(rotationSpeed, ringRadius, ringThickness, sphereRadius) {
+            rotateY(millis() / (rotationSpeed));
+            torus(ringRadius, ringThickness);
+            createSphere(ringRadius, 0, 0, sphereRadius);
+
+            }    
+        </script>
+    </head>
+</html>
