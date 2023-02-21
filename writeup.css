@@ -41,15 +41,16 @@ h3 {
 
 a {
     color:whitesmoke;
+    text-decoration: underline;
 }
 
 a:visited {
     color:whitesmoke;
-    text-decoration: none;
+    text-decoration: underline;
 }
 
 a:link {
-    text-decoration: none;
+    text-decoration: underline;
 
 }
 

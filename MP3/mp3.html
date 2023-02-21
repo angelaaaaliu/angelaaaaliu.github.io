@@ -1,0 +1,75 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="../writeup.css" />
+    <link rel="stylesheet" href="https://use.typekit.net/nsi7ers.css">
+    <link rel="stylesheet" href="https://use.typekit.net/jla2cmv.css">
+
+  </head>
+  <body>
+    <div class="writeup-container">
+        <h1>MP3: Dev Toolchain</h1>
+        <img class="banner-gif" src="./imgs/mp3-cover-gif.gif" alt="">
+        <p>"MIC-451" is 8-bit shooter game where you play as the space princess attempting to stop Octomon's reign.</p>
+        <h3>Running MIC-451</h3>
+        <p>You can access the game <a href="https://angelaaaaliu.github.io/mic451/">here</a>.</p>
+        <h2>Development Process</h2>
+        <p>
+          Since I had previous interest in game development (even though I've never tried to code one), I already had this 
+          game concept in mind. My original game was called MIC-81 and it was meant to be an 8-bit space adventure game. I 
+          decided to expand upon this concept with this project.
+        </p>
+        <p>
+          Actually, most of this project involved drawing all my assets in Adobe Illustrator. All things you see in the game 
+          (space princess, lava, octomon, rocks) were all drawn by hand through Illustrator. Once I finished drawing all my assets, 
+          I exported the images and added them to an images folder in my Git repository.
+        </p>
+        <p>
+          This project was created with p5.play. I set up a development environment. I used Rollup to bundle and build my code. I then
+           deployed my project using Github pages.
+        </p>
+        <p>
+          I used the <a href="https://p5play.org/index.html">5.play reference library</a> and their <a href="https://p5play.org/demos/">demos</a> to create my code.
+        </p>
+        <p>
+          The majority of my code was creating different sprites (objects in the game) and figuring out how they interact with each other.
+        </p>
+        <h3>Issue Deep-Dive</h3>
+        <p>
+           I encounter a couple issues during this project. The first issue was creating the interaction between the player when it's holding the scythe
+            and when it attacks the Octomon. The logic behind this interaction was that if the player was overlapping with the Octomon and they attacked
+            (pressed K on the keyboard), the Octomon is supposed to lose health. For some reason, the health bar was only going down occasionally, rather than
+           going down every time. The image below is me attempting to debug the sprites The smaller box is the player and the bigger box is the Octomon.
+           As you can see, they are overlapping, but the health bar was not going down at the time.
+        </p>
+        <img class="project-img" src="./imgs/mp3-issue-deepdive.png">
+        <p>
+          p5.play has a function that allows two sprites to overlap each other. The syntax looks like this:
+        </p>
+        <p class="bulleted-list">sprite1.overlaps(sprite2)</p>
+        <p>
+          You can also run a function every time the sprites overlap like this:
+        </p>
+        <p class="bulleted-list">sprite1.overlaps(sprite2, function)</p>
+        <p>
+          I attempted to use this syntax, but the health bar was just not going down every time. I decided to use a different syntax where I called the function 
+           within my 'draw' function instead. The logic looks something like this:
+        </p>
+        <div class="bulleted-list">
+          <p class="bullet-point">if (the player has the scythe equipped & the player is pressing K & the player is overlapping the Octomon) {</p>
+          <p class="bullet-point">decrease Octomon's health by 10%}</p>
+        </div>
+        <p>
+          This finally allowed the interaction with the scythe and the Octomon to occur correctly.
+        </p>
+        <h2>Ideas and Future Work</h2>
+        <p>Like I mentioned before, I am highly interested in game development and was already working on concepts to create my own game. I would love to continue 
+          to build out this game and create more assets. I also originally wanted the player to be able to cusomize their avatar, build a spaceship, and visit planets.
+          I'd love to see what I can do with this!
+        </p>
+        <h2>Kudos</h2>
+        <p>
+          Thank you to Hannah for helping me with a difficult concept - sprite animations. The slimes coming from the Octomon would not exist without her!
+        </p>
+    </div>
+  </body>
+</html>
