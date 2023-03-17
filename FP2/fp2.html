@@ -1,0 +1,81 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="../writeup.css" />
+    <link rel="stylesheet" href="https://use.typekit.net/nsi7ers.css">
+    <link rel="stylesheet" href="https://use.typekit.net/jla2cmv.css">
+
+  </head>
+  <body>
+    <div class="writeup-container">
+        <h1>FP1: Final Project Prototype</h1>
+        <img class="banner-gif" src="./imgs/fp2.gif" alt="">
+        <p>For my final project prototype, I created a photography portfolio of my dad's astrophotography using React.</p>
+        <h2>Usage</h2>
+        <p>You can access the portfolio <a href="https://angelaaaaliu.github.io/astrophotography-final/">here</a>.</p>
+        <h2>Development Process</h2>
+        <p>
+            Since my prototype was pretty close to my final version, the development process for this project was not necessarily simple, 
+            but it was much shorter. I duplicated my Github repository, then used React to add coordinates for each planet when the user
+            hovers over them.
+        </p>
+        <h2>Issue Deep-Dive</h2>
+        <p>
+            I made only one major change in my React app but this somehow was a lot more work than I anticipated. As mentioned earlier, I wanted
+            the coordinates of each photo's galaxy to display when hovering over the corresponding planet.
+        </p>
+        <p>
+            In order to do this, I needed to use the useState hook once again to ensure that React re-rendered the page every time the user 
+            hovers over a planet and shows the coordinates. I used similar code used to make the photo window show, but this time it the state
+            was changed on hover and the state that was being changed was a style object, rather than a boolean. I created a dictionary of
+            objects that have attributes of IDs, coordinates, and styles. The ID of each of these "coordinate" objects aligned with the IDs of my photos.
+            For example, the Heart Nebula coordinate object had an ID of 1, coordinates "RA 2h 33m 22s | Dec +61° 26′ 36″", and style of 
+            {position: "absolute", top: '63.5%', right: '75%'}. I then created a function that changed the state from "display: none" to
+            "display: block." I added this function to each planet as a hover event. This function would also filter the dictionary of coordinates
+            to only have the one coordinate object corresponding to the ID of the planet the user hovered over. I also made sure to create a 
+            function that would change the display back to "none" when the mouse leaves the planet.
+        </p>
+        <p>
+            Next, I needed the position of the coordinates to change depending on which planet I hovered over. For example, if you take a look at 
+            the red planet at the bottom left, it represents the Heart Nebula, which has coordinates"RA 2h 33m 22s | Dec +61° 26′ 36″". 
+            I also needed the coordinates to show up right below the red planet. This is why I created a style attribute for each coordinate. I used 
+            the map function to map each coordinate in the coordinates object dictionary (which since hovering over each planet filtered this 
+            dictionary, there should only be one coordinate object). This way I could use its attributes to general an HTML element and stye it as well.
+            I used a spreader function to combine two styles: the useState hook, which set the display style, and the style from the dictionary, which
+            changed the position of the coordinates on the screen to match the corresponding planet.
+        </p>
+        <p>
+            Although it may sound intuitive now, I actually ran into many roadblocks when trying to achieve this simple interaction. From my prototype 
+            version, I had an initial dictionary of photo objects. I initially attempted to add the coordinates as attributes to these objects. 
+            I was able to filter it so that only one coordinate was showing up, but when I clicked on any planet to show the photo, all the photos 
+            would show up, rather than the photo corresponding to the planet. I realized that this was because when I hovered out of the planet, it
+            was executing the function that changed the state of the gallery dictionary to have all galaxies/photos again. This is why I created a
+            separate dictionary just for coordinates. This way, the coordinates object would not affect the actual photos themselves.
+        </p>
+        <p>
+            Another issue I was having was styling the coordinates and making sure they were in the correct position. I use in-ine styling to 
+            dynamically style the coordinate element to change positions depending on which planet I am hovering over. However, the issue was that I
+            was actually taking in two separate style objects, one from the useState hook that set the display, and one from the coordinates object 
+            that set the position. I was not sure how to use two style objects and merge them together so that the HTML element was being affected by
+            both. I looked up some information on Stack Overflow and saw someone suggest using the Object.assign function. I attempted to do this
+            but kept receiving errors. I then tried spreader function and seemed like this was the syntax to get React to do what I wanted it to.
+        </p>
+        <h2>Ideas and Future Work</h2>
+        <p>
+            I did initially want to create interesting animations but after doing some research online, I could not find many good tutorials for 
+            React specifically and realized that it may be out of the project scope. I would still love to learn more about animating in React or just
+            Javascript in general.
+        </p>
+        <p>
+            I also really enjoy using Spline to create 3-D objects and animations so really mastering this API would be really useful for any web 
+            design I decide to do in the future.
+        </p>
+        <p>
+            I also realize that I have a small handful of images, which makes it a bit easier to code a website like this. If I were to (or if my
+            dad) continuing using and building upon this website, I would want to manipulate the code so that it is easier for me to add many
+            more photos.
+        </p>
+        <h2>Kudos</h2>
+        <p>Thank you to my dad for providing photos and inspiring this project!</p>
+    </div>
+  </body>
+</html>
